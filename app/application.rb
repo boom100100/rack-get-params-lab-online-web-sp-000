@@ -29,7 +29,7 @@ class Application
         @@cart << @@items.select {|item|
           item = search_term
         }
-        resp.write "Added #{item}"
+        resp.write "added #{item}"
       else
         resp.write "We don't have that item"
       end

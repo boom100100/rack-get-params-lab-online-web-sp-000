@@ -27,12 +27,11 @@ class Application
       @@cart << @@items.select {|item|
         item = search_term
       }
-      if @@cart.length == 0
-        @@cart.each {|item|
-          resp.write item
-        }
-        else
-      resp.write handle_search(search_term)
+      if @@items.include?(search_term)
+        resp.write item
+      else
+        resp.write handle_search(search_term)
+      end
     else
       resp.write "Path Not Found"
     end

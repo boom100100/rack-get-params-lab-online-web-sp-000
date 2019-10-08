@@ -24,6 +24,14 @@ class Application
       resp.write handle_search(search_term)
     elsif req.path.match(/add/)
       search_term = req.params["q"]
+      @@cart << @@items.select {|item|
+        item = search_term
+      }
+      if @@cart.length == 0
+        @@cart.each {|item|
+          resp.write item
+        }
+        else
       resp.write handle_search(search_term)
     else
       resp.write "Path Not Found"

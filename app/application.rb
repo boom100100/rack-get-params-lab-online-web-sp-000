@@ -24,13 +24,13 @@ class Application
       resp.write handle_search(search_term)
     elsif req.path.match(/add/)
       search_term = req.params["q"]
-      @@cart << @@items.select {|item|
-        item = search_term
-      }
+
       if @@items.include?(search_term)
-        resp.write item
+        @@cart << @@items.select {|item|
+          item = search_term
+        }
       else
-        resp.write handle_search(search_term)
+        resp.write "We don't have that item"
       end
     else
       resp.write "Path Not Found"
